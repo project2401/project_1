@@ -1,0 +1,27 @@
+.App {
+  width: 100%;
+}
+.App .Month .rum {
+  display: flex;
+  justify-content: space-between;
+}
+.App .Month .rum .rumText {
+  flex: 1;
+}
+.App .Month .rum .sectionRum {
+  flex: 3;
+  background-color: #008000;
+  display: flex;
+  flex-direction: column;
+}
+.App .Month .rum .sectionRum .rumMouth {
+  display: flex;
+  justify-content: space-between;
+}
+.App .Month .rum .sectionRum .day {
+  display: flex;
+  justify-content: space-between;
+}
+.App .Month .rum .sectionRum .day .dayTitle {
+  display: flex;
+}

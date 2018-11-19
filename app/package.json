@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "newapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "style": "stylus -w ./src/style.styl -o ./src/style.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
