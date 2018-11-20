@@ -1,27 +1,39 @@
 ////////////TimeOfDate
 @import './components/TimeOfDate/style.styl'
 .App
-    width: 100%
-    .Month
-        .rum
-            .rumText
-                flex 1
-                
+    max-width 1600px
+    margin: 0 auto
+    .wrapper
+        .zone
             display: flex
+            margin 0 auto
             justify-content: space-between
-            .sectionRum
-                flex 3
-                background-color: green
-                display: flex
-                flex-direction: column
-                .rumMouth
-                    display: flex
-                    justify-content: space-between
-                .day
-                    display: flex
-                    justify-content: space-between
-                    .dayTitle
+            max-width 800px
+            .green
+                .TimeOfDate
+                    .title
+                        .time
+                            background-color: #b1a3a3a3
+        .Month
+            .rum
+                background-color: #b1a3a3a3;
+                max-width: 800px;
+                margin: 0 auto;
+                .rumText
+                .sectionRum
+                    .rumMouth
+                        display flex
+                        margin 0 auto
+                        max-width 800px
+                        justify-content: space-between
+                    .day
                         display: flex
-                        
-    
-        
+                        margin 0 auto
+                        max-width 800px
+                        justify-content: space-between
+                        .dayTitle
+                            
+                            display flex
+                            .dayTitlelText
+                                margin-right: 5px
+

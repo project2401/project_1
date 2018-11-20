@@ -6,6 +6,7 @@ import './style.css'
 
 class App extends Component {
   state ={
+    SelectedВay: [],
     server:[],
     serverLocal:
     {
@@ -107,10 +108,26 @@ class App extends Component {
               month={this.state.serverLocal.month} 
               day={this.state.serverLocal.day}
               />
-              <div className='green'>
-                <p>Зеленая</p>
-                <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
-                
+              <div className='zone'>
+                <div className='green'>
+                  <p>Зеленая</p>
+                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
+                  
+                </div>
+                <div className='green'>
+                  <p>Крассаная</p>
+                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
+                  
+                </div>
+                <div className='green'>
+                  <p>Синяя</p>
+                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
+                  
+                </div>
+                <div className='green'>
+                  <p>Фиолетовая</p>
+                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
+                </div>
               </div>
 
           </div>

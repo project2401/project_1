@@ -1,27 +1,43 @@
+.TimeOfDate {
+  display: flex;
+}
 .App {
-  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
-.App .Month .rum {
+.App .wrapper .zone {
   display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  max-width: 800px;
+}
+.App .wrapper .zone .green .TimeOfDate .title .time {
+  background-color: rgba(177,163,163,0.639);
+}
+.App .wrapper .Month .rum {
+  background-color: rgba(177,163,163,0.639);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.App .wrapper .Month .rum .rumText .rumMouth,
+.App .wrapper .Month .rum .sectionRum .rumMouth {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
   justify-content: space-between;
 }
-.App .Month .rum .rumText {
-  flex: 1;
-}
-.App .Month .rum .sectionRum {
-  flex: 3;
-  background-color: #008000;
+.App .wrapper .Month .rum .rumText .day,
+.App .wrapper .Month .rum .sectionRum .day {
   display: flex;
-  flex-direction: column;
-}
-.App .Month .rum .sectionRum .rumMouth {
-  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
   justify-content: space-between;
 }
-.App .Month .rum .sectionRum .day {
+.App .wrapper .Month .rum .rumText .day .dayTitle,
+.App .wrapper .Month .rum .sectionRum .day .dayTitle {
   display: flex;
-  justify-content: space-between;
 }
-.App .Month .rum .sectionRum .day .dayTitle {
-  display: flex;
+.App .wrapper .Month .rum .rumText .day .dayTitle .dayTitlelText,
+.App .wrapper .Month .rum .sectionRum .day .dayTitle .dayTitlelText {
+  margin-right: 5px;
 }
