@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 export default class TimeOfDate extends Component {
+    
+    
   render() {
     return (
       <div className="TimeOfDate">
@@ -8,7 +10,7 @@ export default class TimeOfDate extends Component {
               {this.props.timeOfDate.map(elem => {
                   return (
                       <div className='time'>
-                          <p key={elem.id}>{elem.time}</p>
+                          <div key={elem.id}>{elem.time}</div>
                       </div>
                       
                   );
