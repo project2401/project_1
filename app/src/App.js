@@ -6,7 +6,7 @@ import './style.css'
 
 class App extends Component {
   state ={
-    SelectedВay: [],
+    SelectedDay: [],
     server:[],
     serverLocal:
     {
@@ -107,6 +107,8 @@ class App extends Component {
             <Month 
               month={this.state.serverLocal.month} 
               day={this.state.serverLocal.day}
+              SelectedDay={this.state.SelecteDay}
+
               />
               <div className='zone'>
                 <div className='green'>
