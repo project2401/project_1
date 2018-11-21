@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import Month from './components/month'
-import TimeOfDate from './components/TimeOfDate'
+// import TimeOfDate from './components/TimeOfDate'
 import './style.css'
 // import Api from './api'
+// import Form from './components/Form';
 
 class App extends Component {
   state ={
-    SelectedDay: [],
+    arr:JSON.parse(localStorage.getItem('data')),
+    SelectedDay: [
+      {
+      okTest: "test"
+    }
+    ],
     server:[],
     serverLocal:
     {
@@ -85,15 +91,22 @@ class App extends Component {
     }
     
   }
-  // componentDidMount() {
-  //   Api().then(json => {
-  //     this.setState({ server: json });
-  //     console.log(this.state.server);
-  //     console.log('day', this.state.server[2].day);
+  componentDidMount() {
+    console.log(JSON.parse(localStorage.getItem('data')))
+    this.state.arr = JSON.parse(localStorage.getItem('data'))
+    console.log(this.state.arr)
+    // Api().then(json => {
+    //   this.setState({ server: json });
+    //   console.log(this.state.server);
+    //   console.log('day', this.state.server[2].day);
       
-  //   });
+    // });
+  }
+  // chanchDate = () =>{
+  //   this.setState({
+  //     SelecteDay: 
+  //   })
   // }
-  
   
   render() {
     
@@ -108,30 +121,13 @@ class App extends Component {
               month={this.state.serverLocal.month} 
               day={this.state.serverLocal.day}
               SelectedDay={this.state.SelecteDay}
+              chanchDate={this.chanchDay}
+              
+
 
               />
-              <div className='zone'>
-                <div className='green'>
-                  <p>Зеленая</p>
-                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
-                  
-                </div>
-                <div className='green'>
-                  <p>Крассаная</p>
-                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
-                  
-                </div>
-                <div className='green'>
-                  <p>Синяя</p>
-                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
-                  
-                </div>
-                <div className='green'>
-                  <p>Фиолетовая</p>
-                  <TimeOfDate timeOfDate={this.state.serverLocal.timeOfDate}/>
-                </div>
-              </div>
-
+              
+  {/* <Form/> */}
           </div>
       </div>
     );
