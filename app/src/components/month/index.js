@@ -2,22 +2,32 @@ import React, { Component } from 'react';
 import TimeOfDate from '../TimeOfDate'
 
 export default class Month extends Component {
+  sendDay = (e) =>{
+    e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
+    // this.setState({
+    //   day: e
+    // })
+  };
+  
   
   render() {
     
     let days = null
     if(this.props.day){
-      days = this.props.day.map((elem, index)=>{
+      days = this.props.day.map((day)=>{
         
         return(
           <div>
-            <div className='dayTitle'  >
-              <div className='dayTitlelText' key={elem.id}>{elem.number} </div>
-              <div>{elem.dayOfTheWeek} </div>
+           
+            
+            <div className='dayTitle'  onClick={e=>this.sendDay(e)}>
+              <div className='dayTitlelText' key={day.id}>{day.number}
+              
+              {day.dayOfTheWeek} </div>
             </div>
             <div className='green'>
                   <p>Зеленая</p>
-                  <TimeOfDate/>
+                  <TimeOfDate time={day.timeOfDate}/>
                 </div>
           </div>
           
