@@ -7,50 +7,51 @@ export default class TimeOfDate extends Component {
             global_arr: null,
             inputField:'help'
         }
-        // this.start();
+        this.arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
     }
-     
-    // start(){
-    //     let newGlobalaArr = this.setState({
-    //     }) this.props.arr
-    //     if(this.global_arr === undefined || this.global_arr === null){
-    //         this.global_arr =[]
-    //     }
-    //     console.log(this.global_arr);
-    // }
 
-    // sendData (id, time) {
-    //     console.log('asdasd')
-    //     let arr= this.global_arr;
-    //     let obj = {
-    //         day:'',
-    //         color:'',
-    //         id:id,
-    //         time: time
-    //     }
-    //     arr.push(obj)
-    //     localStorage.setItem('data', JSON.stringify(arr))
-    // }
-    sendData = (e, value) => {
-        // console.log();
-        
-        e.target.style.color =  e.target.style.color === 'red' ? '#000' : 'red'
-        // this.setState({})
-        
-    };
-        
-    
-    
+    sendData (id, time, day, color) {
+        let arr= this.arr;
+        // console.log(arr)
+        // debugger
+        let obj = {
+            day:day,
+            color:color,
+            id:id,
+            time: time
+        }
+        arr.push(obj)
+        localStorage.setItem('data', JSON.stringify(arr))
+    }
+    color(id, time,  day, color){
+
+        for(let i = 0; i<this.arr.length;i++){
+            
+            if(this.arr[i].time === time 
+                && this.arr[i].id === id
+                && this.arr[i].day === day
+                && this.arr[i].color === color){
+                // console.log(this.arr[i].time == time)
+                return {
+                    background :'red'
+                }
+            }
+        }
+    }
   render() {
-    //   console.log('props',this.props.time);
+    //   console.log('time',this.props.time.timeOfDate);
       
     return (
       <div className="TimeOfDate">
           <div className='title'>
-                <div className='time' onClick={(e, value) => this.sendData(e, value)}>
+                <div className='time'>
                 {this.props.time.map(elem=>{
                     return(
-                        <input value={elem.time}/>
+                        <div onClick={() => this.sendData(elem.id, elem.time)}
+                style={this.color(elem.id, elem.time, elem.color, elem.day)} > 
+                            {elem.time}
+                        </div>
+                    
                     )
                 })} 
                     {/* <input id='1' name="inputField" value='9:00'/>

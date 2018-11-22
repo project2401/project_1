@@ -5,14 +5,40 @@
   max-width: 1600px;
   margin: 0 auto;
 }
-.App .wrapper .zone {
+.App .wrapper .wrapperSection .section .secondSection {
   display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
-  max-width: 800px;
 }
-.App .wrapper .zone .green .TimeOfDate .title .time {
-  background-color: rgba(177,163,163,0.639);
+.App .wrapper .wrapperSection .section .secondSection .color {
+  display: flex;
+  flex-direction: flex;
+  width: 1000px;
+}
+.App .wrapper .wrapperSection .section .secondSection .color .titleTime {
+  display: flex;
+}
+.App .wrapper .wrapperSection .section .secondSection .color .titleColor {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.App .wrapper .wrapperSection .section .secondSection .color .titleColor .colorText {
+  flex: 1;
+}
+.App .wrapper .wrapperSection .section .secondSection .color .titleColor .titleTime .Time {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+  border: 1px solid;
+  margin-right: 20px;
+}
+.App .wrapper .wrapperSection .section .secondSection .color .titleColor .titleTime .Time .itTime {
+  width: 50px;
+}
+.App .wrapper .wrapperSection .section .secondSection .sectionTime {
+  display: flex;
+  width: 800px;
+  justify-content: space-around;
+  height: 100px;
 }
 .App .wrapper .Month .rum {
   background-color: rgba(177,163,163,0.639);
