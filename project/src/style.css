@@ -1,0 +1,45 @@
+.App .wrapper .headar {
+  width: 80%;
+  margin: 0 auto;
+}
+.App .wrapper .headar .rum {
+  display: flex;
+  justify-content: space-between;
+}
+.App .wrapper .headar .rum .rumDey {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.App .wrapper .headar .rum .rumDey .mouth {
+  display: flex;
+  justify-content: space-between;
+}
+.App .wrapper .headar .rum .rumDey .dey {
+  display: flex;
+  justify-content: space-between;
+}
+.App .wrapper .headar .sectionRgeen {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.App .wrapper .headar .sectionRgeen .sectionTime {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.App .wrapper .headar .sectionRgeen .sectionTime .timeSection {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+  justify-content: flex-end;
+}
+.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .time {
+  margin-right: 3px;
+}
+.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .chenge {
+  color: #f00;
+  margin-right: 3px;
+}
