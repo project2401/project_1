@@ -17,7 +17,7 @@ const Time = ({time, clickTime, changeDate, day}) => {
                 <div 
                     className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
-                    onClick={(e)=>clickTime(e, el.id, index)}
+                    onClick={(e)=>clickTime(e, el.id)}
                     
                 >
                 

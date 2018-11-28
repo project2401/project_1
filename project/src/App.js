@@ -61,8 +61,9 @@ class App extends Component {
       date: new Date()
       
     }
-    clickTime = (e, id, index) => {
+    clickTime = (e, idTime) => {
       e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
+      console.log(idTime);
       
       //   this.setState({
       //   changeDate: !this.state.changeDate
