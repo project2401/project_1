@@ -59,13 +59,14 @@ class App extends Component {
       ],
       changeDate:false,
       date: new Date(),
-      zone : ['Зеленая', 'Крассная', 'Синяя', 'Фиолетовая']
+      zone : ['Зеленая', 'Красная', 'Синяя', 'Фиолетовая']
       
       
     }
-    clickTime = (e, idTime) => {
+    clickTime = (e, idTime, zone) => {
       e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
       console.log(idTime);
+      console.log(zone);
       
       //   this.setState({
       //   changeDate: !this.state.changeDate
@@ -109,11 +110,13 @@ class App extends Component {
                 <div className='sectionRgeen'>
                     <div className="greenZone">
                     {this.state.zone.map(zone =>{
+                      console.log(zone)
                       return(
                         <div className="zoneTitle">
                           <div>{zone}</div>
                         <Time time={this.state.timeOfDate}
                           clickTime={this.clickTime}
+                          zone={zone}
                           // changeDate={this.state.changeDate}
                             />
                         </div>

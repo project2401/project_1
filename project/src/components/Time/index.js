@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Time = ({ time, clickTime, changeDate }) => {
+const Time = ({ time, clickTime, changeDate, zone }) => {
     // console.log('time', time);
     
     // clickTime = e => {
@@ -19,7 +19,7 @@ const Time = ({ time, clickTime, changeDate }) => {
                 <div 
                     className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
-                    onClick={(e)=>clickTime(e, el.id)}
+                    onClick={(e)=>clickTime(e, el.id, zone)}
                 >
                     {el.time}
                 </div> 
