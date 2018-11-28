@@ -58,7 +58,9 @@ class App extends Component {
         
       ],
       changeDate:false,
-      date: new Date()
+      date: new Date(),
+      zone : ['Зеленая', 'Крассная', 'Синяя', 'Фиолетовая']
+      
       
     }
     clickTime = (e, idTime) => {
@@ -74,6 +76,7 @@ class App extends Component {
     
   // }
   render() {
+    
     return (
       <div className="App">
         <div className='wrapper'>
@@ -105,37 +108,46 @@ class App extends Component {
                 </div> */}
                 <div className='sectionRgeen'>
                     <div className="greenZone">
-                        <div>Зеленая</div>
+                    {this.state.zone.map(zone =>{
+                      return(
+                        <div className="zoneTitle">
+                          <div>{zone}</div>
+                        <Time time={this.state.timeOfDate}
+                          clickTime={this.clickTime}
+                          // changeDate={this.state.changeDate}
+                            />
+                        </div>
+                        
+                      )
+                    })}
+                        
                     </div>
-                    <Time time={this.state.timeOfDate}
-                    clickTime={this.clickTime}
-                    changeDate={this.state.changeDate}
-                    />
+                    
                 </div>
-                <div className='sectionRgeen'>
+                {/* <div className='sectionRgeen'>
                     <div className="greenZone">
                         <div>Крассная</div>
                     </div>
                   <Time time={this.state.timeOfDate}
-                  clickTime={this.clickTime}/>
+                    clickTime={this.clickTime}/>
                     
-                </div>
-                <div className='sectionRgeen'>
+                </div> */}
+                {/* <div className='sectionRgeen'>
                     <div className="greenZone">
                         <div>Синяя</div>
                     </div>
                   <Time time={this.state.timeOfDate}
-                  clickTime={this.clickTime}/>
+                    clickTime={this.clickTime}/>
                     
-                </div>
-                <div className='sectionRgeen'>
+                </div> */}
+                {/* <div className='sectionRgeen'>
                     <div className="greenZone">
                         <div>Фиолетовая</div>
                     </div>
                   <Time time={this.state.timeOfDate}
-                  clickTime={this.clickTime}/>
+                    clickTime={this.clickTime}/>
                     
-                </div>
+                </div> */}
             </section>
             
           </div>

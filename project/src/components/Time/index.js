@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Time = ({time, clickTime, changeDate, day}) => {
+const Time = ({ time, clickTime, changeDate }) => {
     // console.log('time', time);
     
     // clickTime = e => {
@@ -8,6 +8,8 @@ const Time = ({time, clickTime, changeDate, day}) => {
         
     //     // e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
     // }
+    
+      
   return (
       <div className="sectionTime">
         <div className='timeSection' >
@@ -18,11 +20,8 @@ const Time = ({time, clickTime, changeDate, day}) => {
                     className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
                     onClick={(e)=>clickTime(e, el.id)}
-                    
                 >
-                
                     {el.time}
-                
                 </div> 
             ) 
         })}

@@ -25,6 +25,13 @@
   justify-content: space-between;
   margin-bottom: 5px;
 }
+.App .wrapper .headar .sectionRgeen .greenZone {
+  width: 800px;
+}
+.App .wrapper .headar .sectionRgeen .greenZone .zoneTitle {
+  display: flex;
+  justify-content: space-between;
+}
 .App .wrapper .headar .sectionRgeen .sectionTime {
   display: flex;
   justify-content: space-between;
