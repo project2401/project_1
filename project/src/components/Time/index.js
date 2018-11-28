@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Time = ({time, clickTime, changeDate}) => {
+const Time = ({time, clickTime, changeDate, day}) => {
     // console.log('time', time);
     
     // clickTime = e => {
@@ -15,9 +15,9 @@ const Time = ({time, clickTime, changeDate}) => {
                 
             return(
                 <div 
-                    className={ changeDate ? 'chenge' : 'time' } 
+                    className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
-                    onClick={()=>clickTime(el.id, index)}
+                    onClick={(e)=>clickTime(e, el.id, index)}
                     
                 >
                 
@@ -27,7 +27,7 @@ const Time = ({time, clickTime, changeDate}) => {
             ) 
         })}
         </div>
-        <div className='timeSection' onClick={clickTime}>
+        {/* <div className='timeSection' onClick={clickTime}>
             {time.map(el=>{
             return(
                 <div className='time' key={el.id}>{el.time}</div> 
@@ -54,7 +54,7 @@ const Time = ({time, clickTime, changeDate}) => {
                 <div className='time' key={el.id}>{el.time}</div> 
             ) 
         })}
-        </div>
+        </div> */}
     </div>
   )
 }

@@ -33,13 +33,12 @@
 .App .wrapper .headar .sectionRgeen .sectionTime .timeSection {
   display: flex;
   flex-wrap: wrap;
-  width: 100px;
   justify-content: flex-end;
 }
 .App .wrapper .headar .sectionRgeen .sectionTime .timeSection .time {
   margin-right: 3px;
 }
-.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .chenge {
+.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .change {
   color: #f00;
   margin-right: 3px;
 }

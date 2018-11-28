@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import Time from './components/Time';
+import Calendar from 'react-calendar';
 
 class App extends Component {
     state={
@@ -47,7 +48,7 @@ class App extends Component {
           time:'18:00'
         }
       ],
-      bloked:[
+      booking:[
         {
           userId:1,
           time:1,
@@ -56,27 +57,32 @@ class App extends Component {
         }
         
       ],
-      changeDate:false
+      changeDate:false,
+      date: new Date()
+      
     }
-    clickTime = ( id, index) => {
+    clickTime = (e, id, index) => {
+      e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
       
-      // console.log('id',e.target);
-      // console.log('index',index);
-      
-      // e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
-      
-        this.setState({
-        changeDate: !this.state.changeDate
-      })
+      //   this.setState({
+      //   changeDate: !this.state.changeDate
+      // })
   }
+  // changeTime=(e)=>{
+    
+    
+  // }
   render() {
     return (
       <div className="App">
         <div className='wrapper'>
+        <Calendar onChange={(e)=>this.changeTime(e)}
+            onChange={this.onChange}
+            value={this.state.date}/>
           <div className='headar'>  
             <h1 className='headerTitle' >  Бронирование переговорок</h1>
             <section>
-                <div className='rum'>
+                {/* <div className='rum'>
                     <div>
                         <div className="rumTitle" >Комната</div>
                     </div>
@@ -87,10 +93,7 @@ class App extends Component {
                             <div>&gt;</div>
                         </div>
                         <div className="dey">
-                            <div>
-                              <div>10 понедельник</div>
-
-                            </div>
+                            <div>10 понедельник</div>
                             <div>11 вторник</div>
                             <div>12 среда</div>
                             <div>13 четверг</div>
@@ -98,14 +101,15 @@ class App extends Component {
                         </div>
                     </div>
                   
-                </div>
+                </div> */}
                 <div className='sectionRgeen'>
                     <div className="greenZone">
                         <div>Зеленая</div>
                     </div>
                     <Time time={this.state.timeOfDate}
                     clickTime={this.clickTime}
-                    changeDate={this.state.changeDate}/>
+                    changeDate={this.state.changeDate}
+                    />
                 </div>
                 <div className='sectionRgeen'>
                     <div className="greenZone">
