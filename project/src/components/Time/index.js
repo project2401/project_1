@@ -12,7 +12,7 @@ const Time = ({ time, clickTime, changeDate, zone, infOrder, date, remove,toggle
                     className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
                     onClick={(e)=>toggle(e, el.time, zone, date)}
-                    style={{color:  infOrder( el.time, zone, date)}} 
+                    style={{color:  infOrder( el.time, zone, date) === true ? 'red' : 'black'}} 
                 >
                     {el.time}
                 </div> 

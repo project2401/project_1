@@ -7,7 +7,8 @@ import Calendar from 'react-calendar';
 
 class App extends Component {
     state={
-        timeOfDate:
+        datas:  JSON.parse(localStorage.getItem('data')) || [],
+        timeOfDate: 
       [
         {
           id:1,
@@ -86,16 +87,16 @@ class App extends Component {
                   && arr[i].color === zone
                   && arr[i].id === 1
                   && arr[i].time === time) {
-                    e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? 'rgb(0, 0, 0)' : 'rgb(0, 39, 255)'
                   arr.splice(i,1)
                   localStorage.setItem('data', JSON.stringify(arr))
+                  this.setState({datas: arr})
               }
           }
     }
 
     clickTime = (e, time, zone, date) => {
       // debugger
-      e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? 'rgb(0, 0, 0)' : 'rgb(0, 39, 255)'
+    //   e.target.style.color = 'rgb(0, 39, 255)'
 
       let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
      
@@ -107,25 +108,29 @@ class App extends Component {
       }
       arr.push(obj)
       localStorage.setItem('data', JSON.stringify(arr))
+      this.setState({datas: arr})
     }
 
     infOrder = (time, zone, dtd)  =>  {
+    console.log('asfas')
       let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
-          for (let i = 0; i < arr.length; i++) {
+          for (let i = 0; i < arr.length; i++) {            
               if (arr[i].day === dtd.toISOString()
                   && arr[i].color === zone
                   && arr[i].id === 1
                   && arr[i].time === time) {
-                  return 'rgb(0, 39, 255)';
+                    
+                  return true;
               }
           }
+          return false
       }
   
       onChange = date => this.setState({ date })
     
   
   render() {
-    
+    console.log( JSON.parse(localStorage.getItem('data')))
     return (
       <div className="App">
         <div className='wrapper'>
@@ -142,7 +147,8 @@ class App extends Component {
                       return(
                         <div className="zoneTitle">
                           <div>{zone}</div>
-                        <Time time={this.state.timeOfDate}
+                        <Time
+                         time={this.state.timeOfDate}
                           clickTime={this.clickTime}
                           zone={zone}
                           infOrder={this.infOrder}
