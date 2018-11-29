@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Time = ({ time, clickTime, changeDate, zone }) => {
+const Time = ({ time, clickTime, changeDate, zone, infOrder, date }) => {
     // console.log('time', time);
     
     // clickTime = e => {
@@ -19,7 +19,9 @@ const Time = ({ time, clickTime, changeDate, zone }) => {
                 <div 
                     className={ changeDate ? 'change' : 'time' } 
                     key={el.id}
-                    onClick={(e)=>clickTime(e, el.id, zone)}
+                    onClick={(e)=>clickTime(e, el.time, zone, date)}
+                    
+                    style={{color:  infOrder( el.time, zone, date)}} 
                 >
                     {el.time}
                 </div> 

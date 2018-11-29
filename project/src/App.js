@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './style.css';
 import Time from './components/Time';
 import Calendar from 'react-calendar';
+// import 'moment-timezone';
+// import moment from 'moment';
 
 class App extends Component {
     state={
@@ -58,24 +60,48 @@ class App extends Component {
         
       ],
       changeDate:false,
-      date: new Date(),
+      date: new Date(
+         new Date().getFullYear(),
+         new Date().getMonth() + 1,
+         new Date().getDate()
+      ),
       zone : ['Зеленая', 'Красная', 'Синяя', 'Фиолетовая']
+
       
       
     }
-    clickTime = (e, idTime, zone) => {
+    clickTime = (e, time, zone, date) => {
       e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
-      console.log(idTime);
-      console.log(zone);
+
+      let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
+     
+      let obj = {
+        day:date,
+        color:zone,
+        id: 1,
+        time: time
+      }
+      console.log(obj)
+      arr.push(obj)
+      localStorage.setItem('data', JSON.stringify(arr))
+    }
+    infOrder = (time, zone, dtd)  =>  {
+      // console.log(dtd);
       
-      //   this.setState({
-      //   changeDate: !this.state.changeDate
-      // })
-  }
-  // changeTime=(e)=>{
-    
-    
-  // }
+      let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
+          for (let i = 0; i < arr.length; i++) {
+              if (arr[i].day === dtd.toISOString()
+                  && arr[i].color === zone
+                  && arr[i].id === 1
+                  && arr[i].time === time) {
+                  return 'rgb(0, 39, 255)';
+              }
+          }
+      }
+  
+      onChange = date => this.setState({ date })
+    // 
+  
   render() {
     
     return (
@@ -117,6 +143,8 @@ class App extends Component {
                         <Time time={this.state.timeOfDate}
                           clickTime={this.clickTime}
                           zone={zone}
+                          infOrder={this.infOrder}
+                          date={this.state.date}
                           // changeDate={this.state.changeDate}
                             />
                         </div>
@@ -157,8 +185,27 @@ class App extends Component {
         </div>
         
       </div>
-    );
+    )
   }
 }
 
 export default App;
+  
+      // this.componentDidMount();
+      //   this.setState({
+      //   changeDate: !this.state.changeDate
+      // })
+  
+  // changeTime=(e)=>{
+    // componentDidMount(){
+    //     fetch('http://127.0.0.1:8000/api/login', {
+    //       nickname:'delux',
+    //       password: '12345678'
+    //     })
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     });
+    // }
