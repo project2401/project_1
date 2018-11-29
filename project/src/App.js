@@ -63,15 +63,39 @@ class App extends Component {
       date: new Date(
          new Date().getFullYear(),
          new Date().getMonth() + 1,
-         new Date().getDate()
+         new Date().getDate() 
       ),
-      zone : ['Зеленая', 'Красная', 'Синяя', 'Фиолетовая']
-
-      
-      
+      zone : ['Зеленая', 'Красная', 'Синяя', 'Фиолетовая'],
     }
+
+    toggle  =(e, time, zone, dtd) => {
+      if(getComputedStyle( e.target).color === 'rgb(0, 0, 0)'){
+        this.clickTime(e, time, zone, dtd)
+      }else{
+        this.remove(e, time, zone, dtd)
+      }
+    }
+
+    remove = (e, time, zone, dtd) => {
+      
+      let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
+          // console.log('this arrr',arr);
+          
+      for (let i = 0; i < arr.length; i++) {
+              if (arr[i].day === dtd.toISOString()
+                  && arr[i].color === zone
+                  && arr[i].id === 1
+                  && arr[i].time === time) {
+                    e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? 'rgb(0, 0, 0)' : 'rgb(0, 39, 255)'
+                  arr.splice(i,1)
+                  localStorage.setItem('data', JSON.stringify(arr))
+              }
+          }
+    }
+
     clickTime = (e, time, zone, date) => {
-      e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? '#000' : 'rgb(0, 39, 255)'
+      // debugger
+      e.target.style.color = e.target.style.color === 'rgb(0, 39, 255)' ? 'rgb(0, 0, 0)' : 'rgb(0, 39, 255)'
 
       let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
      
@@ -81,13 +105,11 @@ class App extends Component {
         id: 1,
         time: time
       }
-      console.log(obj)
       arr.push(obj)
       localStorage.setItem('data', JSON.stringify(arr))
     }
+
     infOrder = (time, zone, dtd)  =>  {
-      // console.log(dtd);
-      
       let arr = JSON.parse(localStorage.getItem('data')) == null ? []: JSON.parse(localStorage.getItem('data'));
           for (let i = 0; i < arr.length; i++) {
               if (arr[i].day === dtd.toISOString()
@@ -100,7 +122,7 @@ class App extends Component {
       }
   
       onChange = date => this.setState({ date })
-    // 
+    
   
   render() {
     
@@ -113,30 +135,10 @@ class App extends Component {
           <div className='headar'>  
             <h1 className='headerTitle' >  Бронирование переговорок</h1>
             <section>
-                {/* <div className='rum'>
-                    <div>
-                        <div className="rumTitle" >Комната</div>
-                    </div>
-                    <div className="rumDey">
-                        <div className="mouth" >
-                            <div>&lt;</div>
-                            <div>Июль</div>
-                            <div>&gt;</div>
-                        </div>
-                        <div className="dey">
-                            <div>10 понедельник</div>
-                            <div>11 вторник</div>
-                            <div>12 среда</div>
-                            <div>13 четверг</div>
-                            <div>14 пятница</div>
-                        </div>
-                    </div>
-                  
-                </div> */}
                 <div className='sectionRgeen'>
                     <div className="greenZone">
                     {this.state.zone.map(zone =>{
-                      console.log(zone)
+                      // console.log(zone)
                       return(
                         <div className="zoneTitle">
                           <div>{zone}</div>
@@ -145,45 +147,18 @@ class App extends Component {
                           zone={zone}
                           infOrder={this.infOrder}
                           date={this.state.date}
+                          remove={this.remove}
+                          toggle={this.toggle}
                           // changeDate={this.state.changeDate}
                             />
                         </div>
-                        
                       )
                     })}
-                        
                     </div>
-                    
                 </div>
-                {/* <div className='sectionRgeen'>
-                    <div className="greenZone">
-                        <div>Крассная</div>
-                    </div>
-                  <Time time={this.state.timeOfDate}
-                    clickTime={this.clickTime}/>
-                    
-                </div> */}
-                {/* <div className='sectionRgeen'>
-                    <div className="greenZone">
-                        <div>Синяя</div>
-                    </div>
-                  <Time time={this.state.timeOfDate}
-                    clickTime={this.clickTime}/>
-                    
-                </div> */}
-                {/* <div className='sectionRgeen'>
-                    <div className="greenZone">
-                        <div>Фиолетовая</div>
-                    </div>
-                  <Time time={this.state.timeOfDate}
-                    clickTime={this.clickTime}/>
-                    
-                </div> */}
             </section>
-            
           </div>
         </div>
-        
       </div>
     )
   }
@@ -191,21 +166,3 @@ class App extends Component {
 
 export default App;
   
-      // this.componentDidMount();
-      //   this.setState({
-      //   changeDate: !this.state.changeDate
-      // })
-  
-  // changeTime=(e)=>{
-    // componentDidMount(){
-    //     fetch('http://127.0.0.1:8000/api/login', {
-    //       nickname:'delux',
-    //       password: '12345678'
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     });
-    // }
