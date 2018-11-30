@@ -1,8 +1,13 @@
 .App
     .wrapper
+    .react-calendar
+        margin 0 auto
         .headar
             width: 80%
             margin 0 auto
+            .headerTitle
+                display flex
+                justify-content: center
             .rum
                 display: flex
                 justify-content: space-between
@@ -22,10 +27,12 @@
                 justify-content: space-between
                 margin-bottom 5px
                 .greenZone
-                    width: 800px
+                    margin 0 auto
                     .zoneTitle
                         display: flex
                         justify-content: space-between
+                        .zoneText
+                            width: 200px
                 .sectionTime
                     display: flex
                     justify-content: space-between
@@ -35,7 +42,9 @@
                         flex-wrap: wrap;
                         justify-content: flex-end;
                         .time
+                            border: 1px solid
                             margin-right 3px
+                            height 20px
                         .change
                             color red
                             margin-right 3px
