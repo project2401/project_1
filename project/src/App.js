@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import "./style.css";
 import Time from "./components/Time";
 import Calendar from "react-calendar";
-import MyForm from "./components/login/form"
-// import FormContainer from './components/login/FormContainer';
+// import MyForm from "./components/login/form";
+// import axios from "axios";
+// import { Router, Route, hashHistory} from 'react-router';
+// import{ BrowserRouter, Route, Link} from "react-router-dom";
+// import createBrowserHistory from "history/createBrowserhistory";
 // import 'moment-timezone';
 // import moment from 'moment';
+
+
 
 class App extends Component {
   state = {
@@ -52,21 +57,17 @@ class App extends Component {
         time: "18:00"
       }
     ],
-    booking: [
-      {
-        userId: 1,
-        time: 1,
-        date: "11/23/2018",
-        placeId: "green"
-      }
-    ],
+    
     changeDate: false,
     date: new Date(
       new Date().getFullYear(),
       new Date().getMonth() + 1,
       new Date().getDate()
     ),
-    zone: ["Зеленая (до 5 персон)", "Красная (до 15 персон)", "Синяя (до 25 персон)", "Фиолетовая (до 25 персон)"]
+    zone: ["Зеленая (до 5 персон)", "Красная (до 15 персон)", "Синяя (до 25 персон)", "Фиолетовая (до 25 персон)"],
+    
+    
+      
   };
 
   toggle = (e, time, zone, dtd) => {
@@ -130,22 +131,22 @@ class App extends Component {
         arr[i].color === zone &&
         arr[i].id === 1 &&
         arr[i].time === time
-        
-        
-        
       ) {
         return true;
-        
       }
     }
     return false;
   };
+  
+ 
+
+  
 
   onChange = date => this.setState({ date });
 
   render() {
-    // console.log(JSON.parse(localStorage.getItem("data")));
     return (
+      
       <div className="App">
         <div className="wrapper">
           <Calendar 
@@ -170,7 +171,6 @@ class App extends Component {
                           date={this.state.date}
                           remove={this.remove}
                           toggle={this.toggle}
-                          // changeDate={this.state.changeDate}
                         />
                       </div>
                     );
@@ -180,8 +180,6 @@ class App extends Component {
             </section>
           </div>
         </div>
-        {/* <FormContainer /> */}
-                <MyForm/>
       </div>
     );
   }

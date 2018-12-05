@@ -1,3 +1,7 @@
+.Form {
+  width: 200px;
+  margin: 250px auto;
+}
 .App .wrapper,
 .App .react-calendar {
   margin: 0 auto;

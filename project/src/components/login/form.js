@@ -1,67 +1,74 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types'
 // import { connect } from 'react-redux'
 
 export class MyForm extends Component {
-  constructor(props)
-  {
-     super(props);
-        this.state = {
-      login:'',
-      pass:'',
-      allow:''
-  } 
+  state={
+    login:'',
+    pass: '',
+    email:'',
+    token:[]
   }
-  onMyChange = (e) => {
-    if(e.target.name ==='login'){
-        this.setState({login: e.target.value})
-        
-        
-    }else{
-        this.setState({pass: e.target.value})
-        
-    }
-    
-  }
-  myClick = () =>{
+  myClick = (e) => {
     var formData = new FormData();
-    formData.append('email', this.state.login);
-    formData.append('password', this.state.pass);
-    fetch( 'http://ec2-54-88-87-181.compute-1.amazonaws.com:8889/login',
-        {
-            method: "post",
-            body: formData,
-            credentials: 'omit',
-            mode: 'cors',
-        })
-        .then((res) => {
-            res.json()
-            .then((response) => {
-                console.log(response)
-            }).catch(function (error) {
-                console.log(error)
-            })
-        })
-        .catch((err) => {
-            console.log('error',err)
-        });
+      formData.append('name', this.state.login);
+      formData.append('email', this.state.email);
+      formData.append('password', this.state.pass);
+      let  myHeaders = new Headers({
+        "Accept": "application/json"
+      });
+      if(e.target.value === "Sign-in"){
+      fetch('http://api.year-progress.org/api/sign-in',{
+        method:'post',
+        body: formData,
+        headers:myHeaders
+      })
+      .then(response => response.json() 
+        .then(token => localStorage.setItem('token', JSON.stringify(token.access_token))
+        )
+        .catch(function (error) {
+          console.log(error)
+      }))  
+      }else{
+      fetch('http://api.year-progress.org/api/sign-up',{
+        method:'post',
+        body: formData,
+        headers:myHeaders
+      })
+      .then(response => response.json() 
+        .then(token => console.log(token)
+        
+        )
+        .catch(function (error) {
+          console.log(error)
+      }))   
+      }
+    }
+
+    onMyChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
   }
-
   render() {
-
     return (
-        <div>
-            <div>
-                <div>Логин: 
-                    <input type="text"onChange={this.onMyChange} name="login"/>
-                </div>
-                <div>Пароль:
-                    <input type="password"onChange={this.onMyChange} name="pass"/>
-                </div>
+        <div className="Form">
+          <div className="FormDiv">
+              <p className="FormTItle">Login:</p>
+              <input placeholder="Enter login" type="text" 
+              onChange={this.onMyChange} name="login"/>
+          </div>
+          <div className="FormDiv">
+              <p>Password:</p>
+              <input placeholder="Enter password" type="pass" 
+              onChange={this.onMyChange} name="pass"/>
+          </div>
+          <div className="FormDiv">
+              <p>Email:</p>
+              <input placeholder="Enter you email" type="email" 
+              onChange={this.onMyChange} name="email"/>
+          </div>
 
-                <input type="button" onClick={this.myClick} value="Войти" />
-
-            </div>
+          <input type="button" onClick={this.myClick} value="Registrations" />
+          <input type="button" onClick={this.myClick} value="Sign-in" />
         </div>
     )
   }
@@ -69,4 +76,4 @@ export class MyForm extends Component {
 
 
 
-export default MyForm;
+export default MyForm
