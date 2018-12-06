@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
 // import axios from 'axios';
-export class MyForm extends Component {
+
+export class Registrations extends Component {
   state={
     login:'',
     pass: '',
@@ -14,36 +13,31 @@ export class MyForm extends Component {
     var formData = new FormData();
       formData.append('email',this.state.email); 
       formData.append('password', this.state.pass);
+      formData.append('name', this.state.login);
       let  myHeaders = new Headers({
         "Accept": "application/json"
       });
-      
-      fetch('http://api.year-progress.org/api/sign-in',{
+    fetch('http://api.year-progress.org/api/sign-up',{
         method:'post',
         body: formData,
         headers:myHeaders
       })
-      .then(response => {
-        response.json()
-            .then(token => {
-          localStorage.setItem('token', JSON.stringify(token.access_token)) 
-          var localValue = localStorage.getItem('token');
-          if(localValue !== 'undefined'){
+      .then(response => response.json() 
+        .then(token => {
+          if(token.message === 'Successfully created user!'){
             window.location.href = "http://localhost:3000/"
             this.setState({isAuthenticated: true})
-          }else{
-            alert('You are not registred')
-            window.location.href = "http://localhost:3000/registrations"
-            this.setState({isAuthenticated:false})
           }
-        }).catch(error => {
-          console.log('error', error)
-        })  
-      })
-      .catch(error => {
-        console.log('error', error)
-    })
-  }
+          
+    }
+        )
+        .catch(function (error) {
+          console.log(error)
+      }))   
+      }
+    
+    
+
     onMyChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
   }
@@ -53,17 +47,22 @@ export class MyForm extends Component {
     return (
         <div className="Form">
           <div className="FormDiv">
-              <p>Email:</p>
-              <input placeholder="Enter you email" type="email" 
-              onChange={this.onMyChange} name="email"/>
+              <p className="FormTItle">Login:</p>
+              <input placeholder="Enter login" type="text" 
+              onChange={this.onMyChange} name="login"/>
           </div>
           <div className="FormDiv">
               <p>Password:</p>
               <input placeholder="Enter password" type="password" 
               onChange={this.onMyChange} name="pass"/>
           </div>
-          
-          <input type="button" onClick={this.myClick} value="Sign-in" />
+          <div className="FormDiv">
+              <p>Email:</p>
+              <input placeholder="Enter you email" type="email" 
+              onChange={this.onMyChange} name="email"/>
+          </div>
+
+          <input type="button" onClick={this.myClick} value="Registrations" />
         </div>
     )
   }
@@ -71,5 +70,5 @@ export class MyForm extends Component {
 
 
 
-export default MyForm
+export default Registrations
           

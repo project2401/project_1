@@ -2,81 +2,93 @@
   width: 200px;
   margin: 250px auto;
 }
-.App .wrapper,
-.App .react-calendar {
+.conteiner .footer {
+  width: 800px;
+  margin: 0 auto;
+  background: #add8e6;
+  display: flex;
+  justify-content: flex-end;
+}
+.conteiner .footer .footerTitle {
+  text-decoration: none;
+  cursor: pointer;
+  width: 100px;
+}
+.conteiner .App .wrapper,
+.conteiner .App .react-calendar {
   margin: 0 auto;
 }
-.App .wrapper .headar,
-.App .react-calendar .headar {
+.conteiner .App .wrapper .headar,
+.conteiner .App .react-calendar .headar {
   width: 80%;
   margin: 0 auto;
 }
-.App .wrapper .headar .headerTitle,
-.App .react-calendar .headar .headerTitle {
+.conteiner .App .wrapper .headar .headerTitle,
+.conteiner .App .react-calendar .headar .headerTitle {
   display: flex;
   justify-content: center;
 }
-.App .wrapper .headar .rum,
-.App .react-calendar .headar .rum {
+.conteiner .App .wrapper .headar .rum,
+.conteiner .App .react-calendar .headar .rum {
   display: flex;
   justify-content: space-between;
 }
-.App .wrapper .headar .rum .rumDey,
-.App .react-calendar .headar .rum .rumDey {
+.conteiner .App .wrapper .headar .rum .rumDey,
+.conteiner .App .react-calendar .headar .rum .rumDey {
   display: flex;
   width: 80%;
   justify-content: space-between;
   flex-direction: column;
 }
-.App .wrapper .headar .rum .rumDey .mouth,
-.App .react-calendar .headar .rum .rumDey .mouth {
+.conteiner .App .wrapper .headar .rum .rumDey .mouth,
+.conteiner .App .react-calendar .headar .rum .rumDey .mouth {
   display: flex;
   justify-content: space-between;
 }
-.App .wrapper .headar .rum .rumDey .dey,
-.App .react-calendar .headar .rum .rumDey .dey {
+.conteiner .App .wrapper .headar .rum .rumDey .dey,
+.conteiner .App .react-calendar .headar .rum .rumDey .dey {
   display: flex;
   justify-content: space-between;
 }
-.App .wrapper .headar .sectionRgeen,
-.App .react-calendar .headar .sectionRgeen {
+.conteiner .App .wrapper .headar .sectionRgeen,
+.conteiner .App .react-calendar .headar .sectionRgeen {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
 }
-.App .wrapper .headar .sectionRgeen .greenZone,
-.App .react-calendar .headar .sectionRgeen .greenZone {
+.conteiner .App .wrapper .headar .sectionRgeen .greenZone,
+.conteiner .App .react-calendar .headar .sectionRgeen .greenZone {
   margin: 0 auto;
 }
-.App .wrapper .headar .sectionRgeen .greenZone .zoneTitle,
-.App .react-calendar .headar .sectionRgeen .greenZone .zoneTitle {
+.conteiner .App .wrapper .headar .sectionRgeen .greenZone .zoneTitle,
+.conteiner .App .react-calendar .headar .sectionRgeen .greenZone .zoneTitle {
   display: flex;
   justify-content: space-between;
 }
-.App .wrapper .headar .sectionRgeen .greenZone .zoneTitle .zoneText,
-.App .react-calendar .headar .sectionRgeen .greenZone .zoneTitle .zoneText {
+.conteiner .App .wrapper .headar .sectionRgeen .greenZone .zoneTitle .zoneText,
+.conteiner .App .react-calendar .headar .sectionRgeen .greenZone .zoneTitle .zoneText {
   width: 200px;
 }
-.App .wrapper .headar .sectionRgeen .sectionTime,
-.App .react-calendar .headar .sectionRgeen .sectionTime {
+.conteiner .App .wrapper .headar .sectionRgeen .sectionTime,
+.conteiner .App .react-calendar .headar .sectionRgeen .sectionTime {
   display: flex;
   justify-content: space-between;
   width: 80%;
 }
-.App .wrapper .headar .sectionRgeen .sectionTime .timeSection,
-.App .react-calendar .headar .sectionRgeen .sectionTime .timeSection {
+.conteiner .App .wrapper .headar .sectionRgeen .sectionTime .timeSection,
+.conteiner .App .react-calendar .headar .sectionRgeen .sectionTime .timeSection {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .time,
-.App .react-calendar .headar .sectionRgeen .sectionTime .timeSection .time {
+.conteiner .App .wrapper .headar .sectionRgeen .sectionTime .timeSection .time,
+.conteiner .App .react-calendar .headar .sectionRgeen .sectionTime .timeSection .time {
   border: 1px solid;
   margin-right: 3px;
   height: 20px;
 }
-.App .wrapper .headar .sectionRgeen .sectionTime .timeSection .change,
-.App .react-calendar .headar .sectionRgeen .sectionTime .timeSection .change {
+.conteiner .App .wrapper .headar .sectionRgeen .sectionTime .timeSection .change,
+.conteiner .App .react-calendar .headar .sectionRgeen .sectionTime .timeSection .change {
   color: #f00;
   margin-right: 3px;
 }
