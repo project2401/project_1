@@ -10,7 +10,7 @@ import Calendar from "react-calendar";
 // import 'moment-timezone';
 // import moment from 'moment';
 
-
+const ThemeContext = React.createContext('light');
 
 class App extends Component {
   state = {
@@ -144,7 +144,9 @@ class App extends Component {
 
   onChange = date => this.setState({ date });
 
+  
   render() {
+    
     return (
       
       <div className="App">
@@ -158,10 +160,10 @@ class App extends Component {
             <section>
               <div className="sectionRgeen">
                 <div className="greenZone">
-                  {this.state.zone.map(zone => {
+                  {this.state.zone.map((zone, i) => {
                     // console.log(zone)
                     return (
-                      <div className="zoneTitle">
+                      <div key={i} className="zoneTitle">
                         <div className="zoneText">{zone}</div>
                         <Time
                           time={this.state.timeOfDate}
@@ -177,6 +179,9 @@ class App extends Component {
                   })}
                 </div>
               </div>
+              <ThemeContext.Provider value="dark">
+                
+              </ThemeContext.Provider>
             </section>
           </div>
         </div>

@@ -7,7 +7,7 @@ export class Registrations extends Component {
     pass: '',
     email:'',
     token:[],
-    isAuthenticated:false
+    isRegistration:false
   }
   myClick = (e) => {
     var formData = new FormData();
@@ -26,7 +26,7 @@ export class Registrations extends Component {
         .then(token => {
           if(token.message === 'Successfully created user!'){
             window.location.href = "http://localhost:3000/"
-            this.setState({isAuthenticated: true})
+            this.setState({isRegistration: true})
           }
           
     }
