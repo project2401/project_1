@@ -18,11 +18,16 @@ import {isAuth} from './actions/index'
 
 
 class App extends Component {
-  componentDidMount(){
-    if(localStorage.getItem("token")){
-      this.props.isAuth(true)
-    }
-  }
+  // componentDidMount(){
+  //   if(localStorage.getItem("token")){
+  //     // console.log(localStorage.getItem("token"));
+      
+  //     return(
+  //       this.props.isAuth(true)
+  //     )
+      
+  //   }
+  // }
 
   state = {
     datas: JSON.parse(localStorage.getItem("data")) || [],
@@ -72,24 +77,22 @@ class App extends Component {
     changeDate: false,
     date: new Date(
       new Date().getFullYear(),
-      new Date().getMonth() + 1,
+      new Date().getMonth() ,
       new Date().getDate()
     ),
     zone: ["Зеленая (до 5 персон)", "Красная (до 15 персон)", "Синяя (до 25 персон)", "Фиолетовая (до 25 персон)"],
-    
-    
-      
   };
 
-  toggle = (e, time, zone, dtd) => {
-    if (getComputedStyle(e.target).color === "rgb(0, 0, 0)") {
-      this.clickTime(e, time, zone, dtd);
-    } else {
-      this.remove(e, time, zone, dtd);
-    }
+  toggle = (e, time, zone, dtd, userId) => {
+    let color = getComputedStyle(e.target).color;
+    color === "rgb(51, 51, 51)" ?
+     this.clickTime(e, time, zone, dtd,userId) : 
+      color === "rgb(0, 0, 255)" ? 
+     this.remove(e, time, zone, dtd, userId) : 
+      null
   };
 
-  remove = (e, time, zone, dtd) => {
+  remove = (e, time, zone, dtd, id) => {
     let arr =
       JSON.parse(localStorage.getItem("data")) == null
         ? []
@@ -98,7 +101,7 @@ class App extends Component {
       if (
         arr[i].day === dtd.toISOString() &&
         arr[i].color === zone &&
-        arr[i].id === 1 &&
+        arr[i].id === id &&
         arr[i].time === time
       ) {
         arr.splice(i, 1);
@@ -108,16 +111,16 @@ class App extends Component {
     }
   };
 
-  clickTime = (e, time, zone, date) => {
+  clickTime = (e, time, zone, date, userId) => {
+    let data = JSON.parse(localStorage.getItem("data"))
     let arr =
-      JSON.parse(localStorage.getItem("data")) == null
+    data === null || data === undefined || data.length === 0
         ? []
         : JSON.parse(localStorage.getItem("data"));
-
     let obj = {
       day: date,
       color: zone,
-      id: 1,
+      id: userId,
       time: time
     };
     arr.push(obj);
@@ -125,43 +128,35 @@ class App extends Component {
     this.setState({ datas: arr });
   };
 
-  infOrder = (time, zone, dtd) => {
-    // console.log("asfas");
+  infOrder = (time, zone, date, userId) => {
     let arr =
       JSON.parse(localStorage.getItem("data")) == null
         ? []
         : JSON.parse(localStorage.getItem("data"));
     for (let i = 0; i < arr.length; i++) {
       if (
-        arr[i].day === dtd.toISOString() &&
+        arr[i].day === date.toISOString() &&
         arr[i].color === zone &&
-        arr[i].id === 1 &&
         arr[i].time === time
       ) {
-        return true;
+        return arr[i].id === userId ? 'activeUser time' : 'activeNoUser time' 
       }
     }
-    return false;
+    return 'time'
+   
   };
-  
-
   onChange = date => this.setState({ date });
 
   logout =() =>{
     localStorage.removeItem('token')
+    localStorage.removeItem('emailUser')
+    // window.location.href = "http://localhost:3000/login"
+    // this.props.history.push('/login')
     this.props.logOut()
-    // this.props.history.push(`/login`)
   }
   render() {
-    // const isLogin = localStorage.getItem('token')
-    // console.log('isLogin',isLogin);
-    // console.log('token', localStorage.getItem('token'));
     console.log(this.props)
-    
-    
     return (
-      // isLogin === true
-      //     ?
           <div className="App">
           <div className="wrapper">
             <Calendar 
@@ -188,6 +183,8 @@ class App extends Component {
                             date={this.state.date}
                             remove={this.remove}
                             toggle={this.toggle}
+                            userId={localStorage.getItem('emailUser')}
+                            // isId={this.isId}
                           />
                         </div>
                       );
@@ -198,19 +195,15 @@ class App extends Component {
             </div>
           </div>
         </div>
-        //   : 
-        // <Redirect to='/login' />
-      
-
     );
   }
 }
-// const mapStateToProps = store => {
-//   // console.log(store);
-//   return {
-
-//   }
-// }
+const mapStateToProps = store => {
+  // console.log('name!!!!!!',store.authenticated.name);
+  return {
+    userId: store.authenticated.name
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return{
@@ -219,4 +212,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect (null, mapDispatchToProps)(App);
+export default connect (mapStateToProps, mapDispatchToProps)(App);

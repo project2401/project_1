@@ -58,6 +58,7 @@ export class Registrations extends Component {
               onChange={this.onMyChange} name="email"/>
           </div>
           <input type="button" onClick={this.myClick} value="Registrations" />
+          <a href="http://localhost:3000/login">Login</a>
         </div>
     )
   }

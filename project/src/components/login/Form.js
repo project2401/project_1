@@ -17,6 +17,7 @@ export class MyForm extends Component {
     
   }
   myClick = (e) => {
+    
     e.preventDefault()
     var formData = new FormData();
     formData.append('email',this.state.email); 
@@ -36,6 +37,7 @@ export class MyForm extends Component {
             if (!!resJson.access_token){
               localStorage.setItem('token', resJson.access_token) 
               this.props.login(this.state.email, this.state.pass)
+              localStorage.setItem('emailUser', this.state.email)
               this.props.history.push('/home')
             } else {
               localStorage.removeItem('token')
@@ -77,7 +79,9 @@ fun = (theme) =>{
                     <input placeholder="Enter password" type="password" 
                     onChange={this.onMyChange} name="pass"/>
                 </div>
-                <input type="button" onClick={(e)=>this.myClick(e)} value="Registrations" />
+                <input type="button" onClick={(e)=>this.myClick(e)} value="Login" />
+                <a href="http://localhost:3000/registration">Registration</a>
+
             </div>
     )
   }

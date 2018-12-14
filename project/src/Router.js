@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
-// import {Link} from 'react-router-dom';
-
 import App from './App';
 import Form from './components/login/Form';
-// import createBrowserHistory from 'history/createBrowserHistory'
 import Registration from './components/login/Registrations'
 import {connect} from 'react-redux'
+import {isAuth} from './actions/index'
 
 
 
@@ -40,15 +38,19 @@ import {connect} from 'react-redux'
 
 class Rout extends Component {
    
+componentDidMount(){
+    if(localStorage.getItem('token')) {
+        this.props.isAuth()
+    }
+}
+
     
     render() {
         const isLogin = localStorage.getItem('token')
-        console.log(isLogin)
+        // console.log(isLogin)
         
         console.log('from router')
         return (
-            
-            // <Router history={createBrowserHistory()>}>
             <Router >
                 <div className="conteiner">
                     <Switch>
@@ -59,7 +61,6 @@ class Rout extends Component {
                             </Switch>
                         )}
                         {!isLogin && (
-                            
                             <Switch>
                                 <Route  path="/login"  exact component={Form} />
                                 <Route  path="/registration"  exact component={Registration} />
@@ -79,4 +80,10 @@ const mapStateToProps = state => {
         isAuth: state.authenticated.isAuthenticated
     }
 }
-export default connect (mapStateToProps, null)(Rout);
+
+const mapDispatchToProps = dispatch => {
+    return{
+      isAuth: () => dispatch(isAuth())
+    }
+  }
+export default connect (mapStateToProps, mapDispatchToProps)(Rout);
