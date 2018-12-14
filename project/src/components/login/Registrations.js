@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 
 export class Registrations extends Component {
   state={
@@ -25,18 +24,15 @@ export class Registrations extends Component {
       .then(response => response.json() 
         .then(token => {
           if(token.message === 'Successfully created user!'){
-            window.location.href = "http://localhost:3000/"
-            this.setState({isRegistration: true})
+            this.props.history.push('/home')
+            
           }
-          
     }
         )
         .catch(function (error) {
           console.log(error)
       }))   
       }
-    
-    
 
     onMyChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
@@ -61,7 +57,6 @@ export class Registrations extends Component {
               <input placeholder="Enter you email" type="email" 
               onChange={this.onMyChange} name="email"/>
           </div>
-
           <input type="button" onClick={this.myClick} value="Registrations" />
         </div>
     )

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./style.css";
 import Time from "./components/Time";
 import Calendar from "react-calendar";
+// import { Route } from 'react-router';
+// import {Redirect} from 'react-router-dom';
 // import MyForm from "./components/login/form";
 // import axios from "axios";
 // import { Router, Route, hashHistory} from 'react-router';
@@ -9,10 +11,19 @@ import Calendar from "react-calendar";
 // import createBrowserHistory from "history/createBrowserhistory";
 // import 'moment-timezone';
 // import moment from 'moment';
+import {connect} from 'react-redux'
+import {isAuth} from './actions/index'
 
-const ThemeContext = React.createContext('light');
+
+
 
 class App extends Component {
+  componentDidMount(){
+    if(localStorage.getItem("token")){
+      this.props.isAuth(true)
+    }
+  }
+
   state = {
     datas: JSON.parse(localStorage.getItem("data")) || [],
     timeOfDate: [
@@ -83,8 +94,6 @@ class App extends Component {
       JSON.parse(localStorage.getItem("data")) == null
         ? []
         : JSON.parse(localStorage.getItem("data"));
-    // console.log('this arrr',arr);
-
     for (let i = 0; i < arr.length; i++) {
       if (
         arr[i].day === dtd.toISOString() &&
@@ -100,9 +109,6 @@ class App extends Component {
   };
 
   clickTime = (e, time, zone, date) => {
-    // debugger
-    //   e.target.style.color = 'rgb(0, 39, 255)'
-
     let arr =
       JSON.parse(localStorage.getItem("data")) == null
         ? []
@@ -138,56 +144,79 @@ class App extends Component {
     return false;
   };
   
- 
-
-  
 
   onChange = date => this.setState({ date });
 
-  
+  logout =() =>{
+    localStorage.removeItem('token')
+    this.props.logOut()
+    // this.props.history.push(`/login`)
+  }
   render() {
+    // const isLogin = localStorage.getItem('token')
+    // console.log('isLogin',isLogin);
+    // console.log('token', localStorage.getItem('token'));
+    console.log(this.props)
+    
     
     return (
-      
-      <div className="App">
-        <div className="wrapper">
-          <Calendar 
-            onChange={this.onChange}
-            value={this.state.date}
-          />
-          <div className="headar">
-            <h1 className="headerTitle"> Бронирование переговорок</h1>
-            <section>
-              <div className="sectionRgeen">
-                <div className="greenZone">
-                  {this.state.zone.map((zone, i) => {
-                    // console.log(zone)
-                    return (
-                      <div key={i} className="zoneTitle">
-                        <div className="zoneText">{zone}</div>
-                        <Time
-                          time={this.state.timeOfDate}
-                          clickTime={this.clickTime}
-                          zone={zone}
-                          infOrder={this.infOrder}
-                          date={this.state.date}
-                          remove={this.remove}
-                          toggle={this.toggle}
-                        />
-                      </div>
-                    );
-                  })}
+      // isLogin === true
+      //     ?
+          <div className="App">
+          <div className="wrapper">
+            <Calendar 
+              onChange={this.onChange}
+              value={this.state.date}
+            />
+            <div className="logOut">
+                <button onClick={this.logout}>Logout</button>
+            </div>
+            <div className="headar">
+              <h1 className="headerTitle"> Бронирование переговорок</h1>
+              <section>
+                <div className="sectionRgeen">
+                  <div className="greenZone">
+                    {this.state.zone.map((zone, i) => {
+                      return (
+                        <div key={i} className="zoneTitle">
+                          <div className="zoneText">{zone}</div>
+                          <Time
+                            time={this.state.timeOfDate}
+                            clickTime={this.clickTime}
+                            zone={zone}
+                            infOrder={this.infOrder}
+                            date={this.state.date}
+                            remove={this.remove}
+                            toggle={this.toggle}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-              <ThemeContext.Provider value="dark">
-                
-              </ThemeContext.Provider>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
-      </div>
+        //   : 
+        // <Redirect to='/login' />
+      
+
     );
   }
 }
+// const mapStateToProps = store => {
+//   // console.log(store);
+//   return {
 
-export default App;
+//   }
+// }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    isAuth: obj => dispatch(isAuth(obj)),
+    logOut: ()=>(dispatch({type:'LOGOUT'}))
+  }
+}
+
+export default connect (null, mapDispatchToProps)(App);
